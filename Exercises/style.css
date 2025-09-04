@@ -1,65 +1,61 @@
 body {
-    background-color: #b4ffc4;
+  background-color: #b4ffc4;
 }
 
 h2 {
-    color: rgb(119, 0, 0)
+  color: rgb(119, 0, 0)
 }
 
 h3 {
-    color: rgb(119, 0, 0)
+  color: rgb(119, 0, 0)
 }
 
 p {
-    color: rgb(119, 0, 0)
+  color: rgb(119, 0, 0)
 }
 
 ul {
-    color: pink
+  color: pink
 }
 
 i {
-    color: rgb(255, 98, 124)
+  color: rgb(255, 98, 124)
 }
+
+body {
+  display: flex;
+  gap: 20px;   
+  padding: 20px;
+}
+
+.first-box-container,
+.second-box-container,
+.third-box-container {
+  width: 200px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  color: blue; 
+  border: 10px solid;
+}
+
 
 .first-box-container {
-
-  width: 200px;
-
-  height: 100px;
-
-  position: absolute;
-  left: 20px;
-
   background-color: red;
-
+  border-color: green;
 }
-
-
 
 .second-box-container {
-
-  width: 200px;
-
-  height: 100px;
-
-  position: absolute;
-  left: 250px;
-
   background-color: yellow;
-
+  border-color: red;
 }
 
-
-
 .third-box-container {
-
-  width: 200px;
-
-  height: 100px;
-
-  position: absolute;
-  left: 480px;
-
   background-color: green;
+  border-color: yellow;
 }
