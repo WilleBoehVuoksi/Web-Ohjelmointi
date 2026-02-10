@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <title>Ensimmäinen JavaScript-sivu</title>
+</head>
+<body>
+    <h1>Tervetuloa!</h1>
+    <p id="tervehdys"></p>
+
+    <script>
+        // 1. Muuttujat
+        let etunimi = "William"; // laita oma nimesi
+        let ika = 18; // laita oma ikäsi
+
+        // 2. Nykyisen vuoden haku
+        let nykyinenVuosi = new Date().getFullYear();
+
+        // 3. Syntymävuoden laskeminen
+        let syntymavuosi = nykyinenVuosi - ika;
+
+        // 4. HTML-elementin haku
+        let tervehdysElementti = document.getElementById("tervehdys");
+
+        // 5. Tervehdyksen kirjoittaminen elementtiin
+        tervehdysElementti.textContent = "Hei " + etunimi + ", olet syntynyt vuonna " + syntymavuosi + ".";
+    </script>
+</body>
+</html>
