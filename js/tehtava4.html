@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Palkkalaskuri</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: #28a745;
+            color: white;
+            font-size: 1em;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #tulosalue {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #e9ecef;
+            display: none; /* Piilotetaan oletuksena */
+        }
+        #tulosalue p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Palkkalaskuri</h1>
+
+    <label for="tuntipalkka">Tuntipalkka (€):</label>
+    <input type="number" id="tuntipalkka" placeholder="Esim. 15">
+
+    <label for="tunnit">Tehdyt tunnit (h):</label>
+    <input type="number" id="tunnit" placeholder="Esim. 40">
+
+    <label for="vero">Veroprosentti (%):</label>
+    <input type="number" id="vero" placeholder="Esim. 20">
+
+    <button onclick="suoritaLaskenta()">Laske</button>
+
+    <div id="tulosalue">
+        <p id="brutto"></p>
+        <p id="veroSumma"></p>
+        <p id="netto"></p>
+        <p id="virhe" class="error"></p>
+    </div>
+
+    <script>
+        function suoritaLaskenta() {
+            // 1. Hae elementit
+            let tuntipalkkaEl = document.getElementById("tuntipalkka");
+            let tunnitEl = document.getElementById("tunnit");
+            let veroEl = document.getElementById("vero");
+            let tulosalue = document.getElementById("tulosalue");
+            let bruttoEl = document.getElementById("brutto");
+            let veroSummaEl = document.getElementById("veroSumma");
+            let nettoEl = document.getElementById("netto");
+            let virheEl = document.getElementById("virhe");
+
+            // Tyhjennä aiemmat viestit
+            virheEl.textContent = "";
+
+            // 2. Hae arvot ja muunna numeroiksi
+            let tuntipalkka = Number(tuntipalkkaEl.value);
+            let tunnit = Number(tunnitEl.value);
+            let veroprosentti = Number(veroEl.value);
+
+            // 3. Validointi
+            if (isNaN(tuntipalkka) || isNaN(tunnit) || isNaN(veroprosentti) ||
+                tuntipalkka < 0 || tunnit < 0 || veroprosentti < 0) {
+                virheEl.textContent = "Tarkista syöttämäsi tiedot.";
+                tulosalue.style.display = "block";
+                bruttoEl.textContent = "";
+                veroSummaEl.textContent = "";
+                nettoEl.textContent = "";
+                return;
+            }
+
+            // 4. Laskenta
+            let brutto = tuntipalkka * tunnit;
+            let veroSumma = brutto * (veroprosentti / 100);
+            let netto = brutto - veroSumma;
+
+            // 5. Päivitä HTML
+            bruttoEl.textContent = "Bruttopalkka: €" + brutto.toFixed(2);
+            veroSummaEl.textContent = "Vero: €" + veroSumma.toFixed(2);
+            nettoEl.textContent = "Nettopalkka: €" + netto.toFixed(2);
+
+            tulosalue.style.display = "block";
+
+            // 6. Tyylin muutos ehdolla
+            if (netto < 100) {
+                nettoEl.style.color = "orange";
+            } else {
+                nettoEl.style.color = "green";
+            }
+        }
+    </script>
+
+</body>
+</html>
