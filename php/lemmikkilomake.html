@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lemmikkisivu</title>
+</head>
+<body>
+
+<h1>HTML lomakeharjoitus</h1>
+
+<form>
+
+    <label for="nimi"><strong>Lemmikin nimi:</strong></label><br>
+    <input type="text" id="nimi" name="nimi" value="Karvinen"><br><br>
+
+    <label for="syntymäaika"><strong>Lemmikin syntymäaika</strong></label><br>
+    <input type="date" id="syntymäaika" name="syntymäaika" value="1981-01-04"><br><br>
+
+    <strong>Lemmikin eläinlaji:</strong><br>
+    <input type="radio" id="kissa" name="laji" value="Kissa" checked>
+    <label for="kissa">Kissa</label><br>
+
+    <input type="radio" id="koira" name="laji" value="Koira">
+    <label for="koira">Koira</label><br>
+
+    <input type="radio" id="hamsteri1" name="laji" value="Hamsteri">
+    <label for="hamsteri1">Hamsteri</label><br>
+
+    <input type="radio" id="hamsteri2" name="laji" value="Hamsteri">
+    <label for="hamsteri2">Hamsteri</label><br>
+
+    <input type="radio" id="kaarme" name="laji" value="Käärme">
+    <label for="kaarme">Käärme</label><br><br>
+
+    <strong>Lemmikin lempiasiat:</strong><br>
+    <input type="checkbox" id="nukkuminen" name="lempiasiat[]" value="Nukkuminen" checked>
+    <label for="nukkuminen">Nukkuminen</label><br>
+
+    <input type="checkbox" id="ruoka" name="lempiasiat[]" value="Ruoka" checked>
+    <label for="ruoka">Ruoka</label><br>
+
+    <input type="checkbox" id="leikkiminen" name="lempiasiat[]" value="Leikkiminen">
+    <label for="leikkiminen">Leikkiminen</label><br>
+
+    <input type="checkbox" id="juokseminen" name="lempiasiat[]" value="Juokseminen">
+    <label for="juokseminen">Juokseminen</label><br><br>
+
+    <strong>Lemmikin väri:</strong><br>
+    <label for="vari">Valitse väri:</label>
+    <input type="color" id="vari" name="vari" value="#f5a623"><br><br>
+
+    <strong>Lemmikin varusteet:</strong><br>
+    <label for="varusteet">Varusteet:</label><br>
+    <select id="varusteet" name="varusteet[]" size="4" multiple>
+        <option value="Panta" selected>Panta</option>
+        <option value="Hihna" selected>Hihna</option>
+        <option value="Kuljetuslaatikko">Kuljetuslaatikko</option>
+        <option value="Lelut">Lelut</option>
+    </select><br><br>
+
+    <input type="submit" value="Lähetä">
+    <input type="reset" value="Resetoi">
+
+</form>
+
+</body>
+</html>
