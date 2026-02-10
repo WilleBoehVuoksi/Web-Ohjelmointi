@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Oliot – Auto</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        p {
+            margin: 5px 0;
+        }
+        button {
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Auton tiedot</h1>
+    <div id="autotiedot"></div>
+    <button onclick="auto.kaynnista()">Käynnistä auto</button>
+
+    <script>
+        // 1. Luo auto-olio
+        let auto = {
+            merkki: "Toyota",
+            malli: "Corolla",
+            vuosimalli: 2020,
+            kaynnissa: false,
+            // 2. Metodi auton käynnistämiseen
+            kaynnista: function() {
+                this.kaynnissa = true;
+                alert("Auto käynnistyi"); // Voidaan myös console.log() jos halutaan
+                naytaTiedot();
+            }
+        };
+
+        // 3. Funktio tietojen näyttämiseen sivulla
+        function naytaTiedot() {
+            let tiedot = "Merkki: " + auto.merkki + "<br>" +
+                         "Malli: " + auto.malli + "<br>" +
+                         "Vuosimalli: " + auto.vuosimalli + "<br>" +
+                         "Käynnissä: " + (auto.kaynnissa ? "Kyllä" : "Ei");
+            document.getElementById("autotiedot").innerHTML = tiedot;
+        }
+
+        // 4. Näytetään tiedot aluksi
+        naytaTiedot();
+    </script>
+
+</body>
+</html>
