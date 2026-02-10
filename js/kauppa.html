@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kauppa</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .tuote {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        #loppusumma {
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ostoskauppa</h1>
+
+    <div class="tuote" id="tuote">
+        <!-- Tuotetiedot tulostetaan JS:llä -->
+    </div>
+
+    <h2>Ostoskori</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Tuote</th>
+                <th>Määrä</th>
+                <th>Hinta (€)</th>
+            </tr>
+        </thead>
+        <tbody id="ostoskori">
+            <!-- Ostoskori täytetään JS:llä -->
+        </tbody>
+    </table>
+    <div id="loppusumma">Loppusumma: €0.00</div>
+
+    <script>
+        // 1. Tuote-olio
+        const tuoteObj = {
+            nimi: "Kahvikuppi",
+            hinta: 5.50
+        };
+
+        // 2. Ostoskori-taulukko
+        let ostoskoriArray = [];
+
+        // 3. Näytetään tuotetiedot
+        const tuoteDiv = document.getElementById("tuote");
+        tuoteDiv.innerHTML = `
+            <strong>${tuoteObj.nimi}</strong><br>
+            Hinta: €${tuoteObj.hinta.toFixed(2)}<br>
+            Määrä: <input type="number" id="maara" value="1" min="1">
+            <button id="lisaaBtn">Lisää koriin</button>
+        `;
+
+        // 4. Lisätään tapahtuma painikkeelle
+        document.getElementById("lisaaBtn").addEventListener("click", function() {
+            const maara = Number(document.getElementById("maara").value);
+
+            if (isNaN(maara) || maara <= 0) {
+                alert("Syötä validi määrä!");
+                return;
+            }
+
+            // Lasketaan hinta
+            const hintaYhteensa = tuoteObj.hinta * maara;
+
+            // Lisätään ostoskoriin
+            ostoskoriArray.push({
+                nimi: tuoteObj.nimi,
+                maara: maara,
+                hinta: hintaYhteensa
+            });
+
+            // Päivitetään näkymä
+            naytaOstoskori();
+        });
+
+        // 5. Funktio ostoskorin näyttämiseen
+        function naytaOstoskori() {
+            const tbody = document.getElementById("ostoskori");
+            tbody.innerHTML = ""; // tyhjennä vanhat rivit
+            let loppusumma = 0;
+
+            ostoskoriArray.forEach(function(item) {
+                const rivi = document.createElement("tr");
+                rivi.innerHTML = `
+                    <td>${item.nimi}</td>
+                    <td>${item.maara}</td>
+                    <td>€${item.hinta.toFixed(2)}</td>
+                `;
+                tbody.appendChild(rivi);
+                loppusumma += item.hinta;
+            });
+
+            document.getElementById("loppusumma").textContent = "Loppusumma: €" + loppusumma.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
